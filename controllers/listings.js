@@ -4,27 +4,36 @@ const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 module.exports.index = async (req, res) => {
-  const { location } = req.query;
+  const { location, category } = req.query;
 
-  let allListings;
+  let filter = {};
 
+  // 🔎 Location Search
   if (location) {
-    allListings = await Listing.find({
-      $or: [
-        { location: { $regex: location, $options: "i" } },
-        { country: { $regex: location, $options: "i" } },
-        { title: { $regex: location, $options: "i" } }
-      ]
-    });
-    if (allListings.length === 0) {
-      req.flash("searchError", `No listings found for "${location}"`);
-      return res.redirect("/listings");
-    }
-  } else {
-    allListings = await Listing.find({});
+    filter.$or = [
+      { location: { $regex: location, $options: "i" } },
+      { country: { $regex: location, $options: "i" } },
+      { title: { $regex: location, $options: "i" } }
+    ];
   }
 
-  res.render("listings/index.ejs", { allListings, location });
+  // 🏷 Category Filter
+  if (category) {
+    filter.category = category;
+  }
+
+  const allListings = await Listing.find(filter);
+
+  if (location && allListings.length === 0) {
+    req.flash("searchError", `No listings found for "${location}"`);
+    return res.redirect("/listings");
+  }
+
+  res.render("listings/index.ejs", { 
+    allListings, 
+    location,
+    category 
+  });
 };
 
 module.exports.newRoute =(req, res) => {
