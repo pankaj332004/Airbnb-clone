@@ -23,7 +23,7 @@ const initDB = async () => {
   await Listing.deleteMany({});
   initData.data = initData.data.map((obj) => ({
   ...obj,
-  owner:'6986a696e279bf129ea59127',
+  owner:'698f5d338fdf8175d93df5cd',
   geometry: {
     type: "Point",
     coordinates: [77.1025, 28.7041]
