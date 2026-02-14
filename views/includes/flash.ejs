@@ -1,5 +1,6 @@
 <% if(success && success.length) { %>
-    <div class="alert alert-success alert-dismissible fade show col-6 offset-3" role="alert">
+    <div class="alert alert-success flash-msg
+ alert-dismissible fade show col-6 offset-3" role="alert">
         <%= success %>
         <button 
         type="button" 
@@ -11,7 +12,8 @@
 <% } %>
 
 <% if(error && error.length) { %>
-    <div class="alert alert-danger alert-dismissible fade show col-6 offset-3" role="alert">
+    <div class="alert alert-danger flash-msg
+ alert-dismissible fade show col-6 offset-3" role="alert">
         <%= error %>
         <button 
         type="button" 
@@ -20,4 +22,21 @@
         aria-label="Close"
         ></button>
     </div>
+<% } %>
+
+<% if (searchError && searchError.length > 0) { %>
+  <div class="alert alert-danger flash-msg
+ alert-dismissible fade show col-6 offset-3" role="alert">
+    <p class="fst-italic text-muted fs-5">
+      Sorry 
+      <i class="fa-solid fa-face-sad-tear"></i> 
+       <%= searchError %>
+      </p>
+      <button 
+        type="button" 
+        class="btn-close  fst-italic text-muted fs-5" 
+        data-bs-dismiss="alert" 
+        aria-label="Close"
+        ></button>
+  </div>
 <% } %>

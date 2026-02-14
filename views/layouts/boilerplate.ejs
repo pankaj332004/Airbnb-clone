@@ -18,6 +18,18 @@
 <!-- Font Awesome -->
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+  .flash-msg {
+    transition: all 0.5s ease;
+    overflow: hidden;
+  }
+
+  .flash-hide {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+</style>
+
       
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.18.1/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.18.1/mapbox-gl.js"></script>
@@ -36,5 +48,19 @@
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
     crossorigin="anonymous"></script>
     <script src="/js/script.js"></script>
+    <script>
+  setTimeout(() => {
+    const flashMessages = document.querySelectorAll(".flash-msg");
+
+    flashMessages.forEach(msg => {
+      msg.classList.add("flash-hide");
+
+      setTimeout(() => {
+        msg.remove();
+      }, 500);
+    });
+
+  }, 5000); // 7 seconds
+</script>
 </body>
 </html>
