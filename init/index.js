@@ -23,7 +23,7 @@ const initDB = async () => {
   await Listing.deleteMany({});
   initData.data = initData.data.map((obj) => ({
   ...obj,
-  owner:'698f5d338fdf8175d93df5cd',
+  owner: new mongoose.Types.ObjectId('698f5d338fdf8175d93df5cd'),
   geometry: {
     type: "Point",
     coordinates: [77.1025, 28.7041]
