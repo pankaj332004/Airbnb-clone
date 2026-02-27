@@ -126,7 +126,7 @@ node init/index.js
 npm run dev
 ```
 
-Open [http://localhost:8000](http://localhost:8000) in your browser.
+Open [http://localhost:8080](http://localhost:8080) in your browser.
 
 ---
 
