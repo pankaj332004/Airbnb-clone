@@ -1,4 +1,5 @@
-require("dotenv").config();
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, '../.env') });
 const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../models/listing.js");
@@ -22,12 +23,12 @@ async function main() {
 const initDB = async () => {
   await Listing.deleteMany({});
   initData.data = initData.data.map((obj) => ({
-  ...obj,
-  owner: new mongoose.Types.ObjectId('698f5d338fdf8175d93df5cd'),
-  geometry: {
-    type: "Point",
-    coordinates: [77.1025, 28.7041]
-  },
+    ...obj,
+    owner: new mongoose.Types.ObjectId('698f5d338fdf8175d93df5cd'),
+    geometry: {
+      type: "Point",
+      coordinates: [77.1025, 28.7041]
+    },
   }));
   await Listing.insertMany(initData.data);
   console.log("data was initialized");

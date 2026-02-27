@@ -9,11 +9,11 @@ const listingSchema = new Schema({
     required: true,
   },
   description: String,
-//   image: {
-//   filename: String,
-//   url: String,
-//  },
- image: {
+  //   image: {
+  //   filename: String,
+  //   url: String,
+  //  },
+  image: {
     // filename: {
     //   type: String,
     //   default: "listingimage",
@@ -28,18 +28,18 @@ const listingSchema = new Schema({
     //       : v,
     // },
     filename: String,
-    url : String,
+    url: String,
   },
   price: Number,
   location: String,
   country: String,
-  reviews:[
+  reviews: [
     {
-      type:Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Review",
     }
   ],
-  owner:{
+  owner: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
@@ -55,20 +55,20 @@ const listingSchema = new Schema({
     },
   },
   category: {
-  type: String,
-  enum: [
-    "Trending", "Rooms", "Iconic Cities", "Mountains", "Castels",
-    "Amazing pools", "Camping", "Farms", "Arctic", "Whislist",
-    "Dome"
-  ],
-  required: true
-},
- 
+    type: String,
+    enum: [
+      "Trending", "Rooms", "Iconic Cities", "Mountains", "Castels",
+      "Amazing pools", "Camping", "Farms", "Arctic", "Whislist",
+      "Dome", "Beachfront"
+    ],
+    required: true
+  },
+
 });
 
-listingSchema.post("findOneAndDelete",async (listing)=>{
-  if(listing){
-    await Review.deleteMany({reviews : {$in: listing.reviews}});
+listingSchema.post("findOneAndDelete", async (listing) => {
+  if (listing) {
+    await Review.deleteMany({ reviews: { $in: listing.reviews } });
   }
 });
 
