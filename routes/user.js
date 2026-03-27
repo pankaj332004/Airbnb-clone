@@ -6,9 +6,12 @@ const passport = require("passport");
 const { saveRedirectUrl } = require("../middleware.js");
 const { login, logout, renderLoginForm, renderSingupForm, singup } = require("../controllers/user.js");
 
-router.route("/singup")
+// Route supports both /signup (correct) and /singup (legacy typo) for backward compat
+router.route("/signup")
 .get(renderSingupForm)
 .post(wrapAsync(singup));
+
+router.get("/singup", (req, res) => res.redirect("/signup"));
 
 router.route("/login")
 .get(renderLoginForm)

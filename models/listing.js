@@ -57,8 +57,8 @@ const listingSchema = new Schema({
   category: {
     type: String,
     enum: [
-      "Trending", "Rooms", "Iconic Cities", "Mountains", "Castels",
-      "Amazing pools", "Camping", "Farms", "Arctic", "Whislist",
+      "Trending", "Rooms", "Iconic Cities", "Mountains", "Castles",
+      "Amazing pools", "Camping", "Farms", "Arctic", "Wishlist",
       "Dome", "Beachfront"
     ],
     required: true
@@ -68,7 +68,7 @@ const listingSchema = new Schema({
 
 listingSchema.post("findOneAndDelete", async (listing) => {
   if (listing) {
-    await Review.deleteMany({ reviews: { $in: listing.reviews } });
+    await Review.deleteMany({ _id: { $in: listing.reviews } });
   }
 });
 

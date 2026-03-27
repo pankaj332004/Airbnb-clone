@@ -6,7 +6,7 @@ module.exports.renderSingupForm = (req,res)=>{
     res.render("users/singup.ejs");
 };
 
-module.exports.singup = async(req,res)=>{
+module.exports.singup = async(req,res,next)=>{
     try{
         let {username, email, password} = req.body;
         const newUser = new User({email,username});
@@ -21,7 +21,7 @@ module.exports.singup = async(req,res)=>{
         })
     }catch(e){
         req.flash("error",e.message);
-        res.redirect("/singup");
+        res.redirect("/signup");
     }
 };
 
