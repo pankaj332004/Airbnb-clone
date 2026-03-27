@@ -6,7 +6,7 @@ A full-stack Airbnb-inspired property listing platform built with **Node.js**, *
 
 ## 🔗 Live Demo
 
-> _Coming Soon — Deploy to Render / Railway_
+> (https://wanderlust-goek.onrender.com)
 
 ---
 
